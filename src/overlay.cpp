@@ -1,10 +1,10 @@
-#include "Overlay.h"
+#include "overlay.h"
 #include <imgui.h>
 #include <imgui_impl_dx11.h>
 #include <imgui_impl_win32.h>
 
-#include <d3dx11.h>
 #include <dwmapi.h>
+#include <d3dx11.h>
 
 static ID3D11Device* g_pd3dDevice = nullptr;
 static ID3D11DeviceContext* g_pd3dDeviceContext = nullptr;
@@ -18,7 +18,7 @@ void CreateRenderTarget();
 void CleanupRenderTarget();
 LRESULT WINAPI WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
-void Overlay::Render()
+void overlay::render()
 {
     WNDCLASSEXW wc = { sizeof(wc), CS_CLASSDC, WndProc, 0L, 0L, GetModuleHandle(nullptr), nullptr, nullptr, nullptr, nullptr, L"ImGui Example", nullptr };
     ::RegisterClassExW(&wc);
@@ -52,20 +52,31 @@ void Overlay::Render()
     ImVec4 clear_color = ImVec4(0.f, 0.f, 0.f, 0.f);
 
     bool done = false;
-    while (!done)
+    while (done == false)
     {
-        if (GetAsyncKeyState(VK_INSERT) & 1) Overlay::Enabled = !Overlay::Enabled;
+        // doing similar logic in wndproc (acting on message) only registers if window is focused
+        if (GetAsyncKeyState(d_toggle_bind) & 1)
+        {
+            overlay::enabled = !overlay::enabled;
+        }
 
         MSG msg;
         while (::PeekMessage(&msg, nullptr, 0U, 0U, PM_REMOVE))
         {
             ::TranslateMessage(&msg);
             ::DispatchMessage(&msg);
+
             if (msg.message == WM_QUIT)
+            {
                 done = true;
+                break;
+            }
         }
-        if (done)
+
+        if (done == true)
+        {
             break;
+        }
 
         if (g_ResizeWidth != 0 && g_ResizeHeight != 0)
         {
@@ -79,13 +90,15 @@ void Overlay::Render()
         ImGui_ImplWin32_NewFrame();
         ImGui::NewFrame();
 
-        if (Overlay::Enabled)
+        if (overlay::enabled)
         {
-            Overlay::Drawing();
+            overlay::draw_gui();
             SetWindowLong(hwnd, GWL_EXSTYLE, WS_EX_TOPMOST | WS_EX_LAYERED | WS_EX_TOOLWINDOW);
         }
         else
+        {
             SetWindowLong(hwnd, GWL_EXSTYLE, WS_EX_TOPMOST | WS_EX_TRANSPARENT | WS_EX_LAYERED | WS_EX_TOOLWINDOW);
+        }
 
         ImGui::Render();
         const float clear_color_with_alpha[4] = { clear_color.x * clear_color.w, clear_color.y * clear_color.w, clear_color.z * clear_color.w, clear_color.w };
@@ -162,7 +175,9 @@ extern IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg
 LRESULT WINAPI WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
     if (ImGui_ImplWin32_WndProcHandler(hWnd, msg, wParam, lParam))
+    {
         return true;
+    }
 
     switch (msg)
     {
@@ -180,5 +195,6 @@ LRESULT WINAPI WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
         ::PostQuitMessage(0);
         return 0;
     }
+
     return ::DefWindowProcW(hWnd, msg, wParam, lParam);
 }

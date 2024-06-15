@@ -15,63 +15,63 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Includes\imconfig.h">
+    <ClInclude Include="include\imconfig.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Includes\imgui.h">
+    <ClInclude Include="include\imgui.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Includes\imgui_impl_dx11.h">
+    <ClInclude Include="include\imgui_impl_dx11.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Includes\imgui_impl_win32.h">
+    <ClInclude Include="include\imgui_impl_win32.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Includes\imgui_internal.h">
+    <ClInclude Include="include\imgui_internal.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Includes\imstb_rectpack.h">
+    <ClInclude Include="include\imstb_rectpack.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Includes\imstb_textedit.h">
+    <ClInclude Include="include\imstb_textedit.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Includes\imstb_truetype.h">
+    <ClInclude Include="include\imstb_truetype.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Menu\Overlay.h">
+    <ClInclude Include="src\overlay.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Includes\imgui.cpp">
+    <ClCompile Include="include\imgui.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Includes\imgui_demo.cpp">
+    <ClCompile Include="include\imgui_demo.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Includes\imgui_draw.cpp">
+    <ClCompile Include="include\imgui_draw.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Includes\imgui_impl_dx11.cpp">
+    <ClCompile Include="include\imgui_impl_dx11.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Includes\imgui_impl_win32.cpp">
+    <ClCompile Include="include\imgui_impl_win32.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Includes\imgui_tables.cpp">
+    <ClCompile Include="include\imgui_tables.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Includes\imgui_widgets.cpp">
+    <ClCompile Include="include\imgui_widgets.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Menu\Drawing.cpp">
+    <ClCompile Include="src\gui.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Menu\Overlay.cpp">
+    <ClCompile Include="src\overlay.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="main.cpp">
+    <ClCompile Include="example\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
